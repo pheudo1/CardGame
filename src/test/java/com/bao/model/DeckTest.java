@@ -15,6 +15,7 @@ public class DeckTest {
     @Before                                         
     public void setUp() {
         deck = new Deck();
+        deck.shuffleDeck();
     }
 
     @Test
@@ -40,10 +41,10 @@ public class DeckTest {
     @Test 
     public void draw2CardsTest() {
         
-        for (int i = 0; i < 2; i++) {
-            deck.drawCard();
+        for (int i = 0; i < 108; i++) {
+            System.out.println(deck.drawCard());
         }
-        assertEquals(106, deck.getDeckSize());
+        assertEquals(0, deck.getDeckSize());
 
     }
 }
