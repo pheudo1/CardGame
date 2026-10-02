@@ -1,16 +1,15 @@
 package com.bao.model;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
     private Deck deck;
     private Hand hand;
     private Player player;
 
-    @Before                                         
+    @BeforeEach
     public void setUp() {
         deck = new Deck();
         deck.shuffleDeck();

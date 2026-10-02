@@ -1,9 +1,8 @@
 package com.bao.model;
 
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test for simple App.
@@ -12,7 +11,7 @@ public class DeckTest {
     
     private Deck deck;
 
-    @Before                                         
+    @BeforeEach                                       
     public void setUp() {
         deck = new Deck();
         deck.shuffleDeck();
