@@ -35,49 +35,51 @@ public class CombinationEval {
         // Section for SINGLES
         // Check for SINGLE
         if (totalRanks == 1 && cardCount == 1) {
-            return new Combination(CombinationType.SINGLE, ranks.size(), ranks.get(0), cards);
+            return new CombinationSimple(CombinationType.SINGLE, ranks.get(0), cards);
         }
 
         // Check for PAIR
         if (totalRanks == 1 && cardCount == 2) {
-            return new Combination(CombinationType.PAIR, ranks.size(), ranks.get(0), cards);
+            return new CombinationSimple(CombinationType.PAIR, ranks.get(0), cards);
         }
 
         // Check for THREE_OF_A_KIND
         if (totalRanks == 1 && cardCount == 3) {
-            return new Combination(CombinationType.THREE_OF_A_KIND, ranks.size(), ranks.get(0), cards);
+            return new CombinationSimple(CombinationType.THREE_OF_A_KIND, ranks.get(0), cards);
         }
 
         // Check for STRAIGHT
         if (isConsecutive && cardCount >= 5 && cardCount == totalRanks) {
-            return new Combination(CombinationType.STRAIGHT, ranks.size(), ranks.get(ranks.size() - 1), cards);
+            return new CombinationStraight(CombinationType.STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount);
         }
 
         //Section for DOUBLES
         // Check for DOUBLED_STRAIGHT
         if (isConsecutive && cardCount >= 6 && cardCount % 2 == 0 && sameFrequency(frequencyMap, 2)) {
-            return new Combination(CombinationType.DOUBLED_STRAIGHT, ranks.size(), ranks.get(ranks.size() - 1), cards);
+            return new CombinationStraight(CombinationType.DOUBLED_STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount / 2);
         }
 
         //Section for TRIPLES
         // Check for TRIPLED_STRAIGHT
         if (isConsecutive && cardCount >= 9 && cardCount % 3 == 0 && sameFrequency(frequencyMap, 3)) {
-            return new Combination(CombinationType.TRIPLED_STRAIGHT, ranks.size(), ranks.get(ranks.size() - 1), cards);
+            return new CombinationStraight(CombinationType.TRIPLED_STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount / 3);
         }
 
         //Section for BOMBS
         // Check for BOMB
         if (totalRanks == 1 && cardCount >= 4) {
-            return new Combination(CombinationType.BOMB, cards.size(), ranks.get(0), cards);
+            return new CombinationBombs(CombinationType.BOMB, ranks.get(0), cards, 1, cardCount);
         }
         
         // Check for STRAIGHT BOMB
         if (isConsecutive && totalRanks >= 2 && sameFrequency(frequencyMap, cardCount / totalRanks) && cardCount / totalRanks >= 4) {
-            return new Combination(CombinationType.STRAIGHT_BOMB, cards.size() / totalRanks, ranks.get(ranks.size() - 1), cards);
+            int bombPotency = cardCount / totalRanks; // Calculate the potency of the bomb based on the number of cards and ranks
+            int consecutiveLength = totalRanks; // The length of the consecutive ranks
+            return new CombinationBombs(CombinationType.STRAIGHT_BOMB, ranks.get(ranks.size() - 1), cards, consecutiveLength, bombPotency);
         }
 
         // If no valid combination is found, return INVALID
-        return new Combination(CombinationType.INVALID, 0, null, cards);
+        return new Combination(CombinationType.INVALID, null, cards);
     }
 
     public static boolean isConsecutive(List<Rank> ranks) {

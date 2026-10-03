@@ -7,13 +7,11 @@ import com.bao.model.Rank;
 
 public class Combination {
     private CombinationType type;
-    private int length;
     private Rank rank;
     private List<Card> cards;
 
-    public Combination (CombinationType type, int length, Rank rank, List<Card> cards) {
+    public Combination (CombinationType type, Rank rank, List<Card> cards) {
         this.type = type;
-        this.length = length;
         this.rank = rank;
         this.cards = cards;
     }
@@ -22,15 +20,15 @@ public class Combination {
         return type;
     }
 
-    public int getLength() {
-        return length;
-    }
-
     public Rank getRank() {
         return rank;
     }
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public int getCardCount() {
+        return cards.size();
     }
 }

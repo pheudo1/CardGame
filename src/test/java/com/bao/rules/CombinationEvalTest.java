@@ -59,7 +59,7 @@ public class CombinationEvalTest {
             );
 
         assertEquals(CombinationType.BOMB, CombinationEval.evaluate(cards).getType());
-        assertEquals(5, CombinationEval.evaluate(cards).getLength());
+        assertEquals(5, CombinationEval.evaluate(cards).getCardCount());
     }
 
     @Test
@@ -76,11 +76,12 @@ public class CombinationEvalTest {
                 Rank.FOUR,
                 Rank.FOUR
             );
+        CombinationBombs c1 = (CombinationBombs) CombinationEval.evaluate(cards);
 
-        assertEquals(CombinationType.STRAIGHT_BOMB, CombinationEval.evaluate(cards).getType());
-        assertEquals(5, CombinationEval.evaluate(cards).getLength());
-        assertEquals(Rank.FOUR, CombinationEval.evaluate(cards).getRank());
-        assertEquals(10, CombinationEval.evaluate(cards).getCards().size());
+        assertEquals(CombinationType.STRAIGHT_BOMB, c1.getType());
+        assertEquals(5, c1.getBombPotency());
+        assertEquals(Rank.FOUR, c1.getRank());
+        assertEquals(10, c1.getCards().size());
     }
 
     @Test
@@ -116,10 +117,11 @@ public class CombinationEvalTest {
                 Rank.FIVE,
                 Rank.FIVE
             );
+        CombinationStraight c1 = (CombinationStraight) CombinationEval.evaluate(cards);
 
-        assertEquals(CombinationType.TRIPLED_STRAIGHT, CombinationEval.evaluate(cards).getType());
-        assertEquals(3, CombinationEval.evaluate(cards).getLength());
-        assertEquals(Rank.FIVE, CombinationEval.evaluate(cards).getRank());
+        assertEquals(CombinationType.TRIPLED_STRAIGHT, c1.getType());
+        assertEquals(3, c1.getStraightLength());
+        assertEquals(Rank.FIVE, c1.getRank());
     }
 
     @Test
@@ -156,11 +158,12 @@ public class CombinationEvalTest {
                 Rank.SEVEN,
                 Rank.SEVEN
             );
+        CombinationStraight c1 = (CombinationStraight) CombinationEval.evaluate(cards);
 
-        assertEquals(CombinationType.DOUBLED_STRAIGHT, CombinationEval.evaluate(cards).getType());
-        assertEquals(5, CombinationEval.evaluate(cards).getLength());
-        assertEquals(Rank.SEVEN, CombinationEval.evaluate(cards).getRank());
-        assertEquals(10, CombinationEval.evaluate(cards).getCards().size());
+        assertEquals(CombinationType.DOUBLED_STRAIGHT, c1.getType());
+        assertEquals(5, c1.getStraightLength());
+        assertEquals(Rank.SEVEN, c1.getRank());
+        assertEquals(10, c1.getCards().size());
     }
 
 
