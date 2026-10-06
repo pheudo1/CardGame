@@ -1,0 +1,107 @@
+2026-10-03T09:49:08.150Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-10-03T09:49:08.150Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "projectPath": "/home/alex/Desktop/git/cardgame",
+  "event": "precheckCompleted",
+  "phase": "precheck",
+  "status": "succeeded",
+  "details": {
+    "components": [
+      {
+        "name": "jdk",
+        "baseVersion": "21",
+        "targetVersion": "25"
+      }
+    ]
+  }
+}}).
+2026-10-03T09:49:08.150Z [INFO] [Tool.invoke] do invoke.
+2026-10-03T09:49:08.152Z [INFO] Project /home/alex/Desktop/git/cardgame is a maven project, try to get java version from pom.xml
+2026-10-03T09:49:08.154Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'precheckCompleted' reported!\nSession ID: 20261003094908,\nSession Dir: /home/alex/Desktop/git/cardgame/.github/modernize/java-upgrade/20261003094908"
+}}).
+2026-10-03T09:49:08.154Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-10-03T09:49:08.156Z [INFO] Project java version: 21
+2026-10-03T09:49:08.156Z [INFO] Maven project detected.
+2026-10-03T09:49:08.156Z [INFO] Build tool type: mvn
+2026-10-03T09:49:08.237Z [INFO] JDK: {
+  "name": "java",
+  "path": "/usr/lib/jvm/jdk-21.0.10-oracle-x64/bin",
+  "version": "21"
+}
+2026-10-03T09:49:08.242Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "/usr/share/maven/bin",
+  "version": "",
+  "source": "PATH,others"
+}
+2026-10-03T09:49:08.242Z [INFO] Project config: {
+  "buildTool": {
+    "path": "/usr/share/maven/bin",
+    "name": "mvn",
+    "version": "",
+    "source": "PATH,others"
+  },
+  "jdk": {
+    "path": "/usr/lib/jvm/jdk-21.0.10-oracle-x64/bin",
+    "name": "java",
+    "version": "21"
+  },
+  "name": "cardgame",
+  "dir": "/home/alex/Desktop/git/cardgame"
+}
+2026-10-03T09:49:13.698Z [INFO] ---------------------prepare appmod-list-jdks----------------------
+2026-10-03T09:49:13.698Z [INFO] [Tool.prepareInvocation]({name: appmod-list-jdks, input: {
+  "sessionId": "20261003094908",
+  "additionalSearchPaths": [
+    "/usr/lib/jvm",
+    "/usr/lib/jvm/default-java",
+    "/usr/lib/jvm/java"
+  ]
+}}).
+2026-10-03T09:49:13.698Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-10-03T09:49:13.698Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "List jdks"
+}}).
+2026-10-03T09:49:13.698Z [INFO] ----------------------prepared appmod-list-jdks----------------------
+2026-10-03T09:49:13.728Z [INFO] ----------------------invoke appmod-list-jdks----------------------
+2026-10-03T09:49:13.728Z [INFO] [Tool.invoke]({name: appmod-list-jdks, modelId: auto, input: {
+  "sessionId": "20261003094908",
+  "additionalSearchPaths": [
+    "/usr/lib/jvm",
+    "/usr/lib/jvm/default-java",
+    "/usr/lib/jvm/java"
+  ]
+}}).
+2026-10-03T09:49:13.728Z [INFO] [Tool.invoke] do invoke.
+2026-10-03T09:49:13.744Z [INFO] [Tool.invoke]({result: {
+  "message": "We found following jdks in your system:\n\n1. Java 21.0.10\n   📁 Path: /usr/lib/jvm/jdk-21.0.10-oracle-x64/bin\n   🏷️ Source: PATH\n\nTotal: 1 JDK installation(s) found"
+}}).
+2026-10-03T09:49:13.744Z [INFO] ----------------------invoked appmod-list-jdks----------------------
+2026-10-03T09:49:13.780Z [INFO] ---------------------prepare appmod-list-mavens----------------------
+2026-10-03T09:49:13.780Z [INFO] [Tool.prepareInvocation]({name: appmod-list-mavens, input: {
+  "sessionId": "20261003094908",
+  "additionalSearchPaths": [
+    "/usr/local/maven",
+    "/usr/share/maven",
+    "/opt/maven"
+  ]
+}}).
+2026-10-03T09:49:13.780Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-10-03T09:49:13.780Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "List mavens"
+}}).
+2026-10-03T09:49:13.780Z [INFO] ----------------------prepared appmod-list-mavens----------------------
+2026-10-03T09:49:13.810Z [INFO] ----------------------invoke appmod-list-mavens----------------------
+2026-10-03T09:49:13.810Z [INFO] [Tool.invoke]({name: appmod-list-mavens, modelId: auto, input: {
+  "sessionId": "20261003094908",
+  "additionalSearchPaths": [
+    "/usr/local/maven",
+    "/usr/share/maven",
+    "/opt/maven"
+  ]
+}}).
+2026-10-03T09:49:13.810Z [INFO] [Tool.invoke] do invoke.
+2026-10-03T09:49:13.813Z [INFO] [Tool.invoke]({result: {
+  "message": "We found following maven installations in your system:\n\n1. 📁 Path: /usr/share/maven/bin\n   🏷️ Source: PATH,others\n\nTotal: 1 Maven installation(s) found"
+}}).
+2026-10-03T09:49:13.813Z [INFO] ----------------------invoked appmod-list-mavens----------------------

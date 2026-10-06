@@ -1,0 +1,17 @@
+2026-10-03T09:48:37.360Z [INFO] ----------------------invoke appmod-redirect-to-upgrade-agent----------------------
+2026-10-03T09:48:37.361Z [INFO] [Tool.invoke]({name: appmod-redirect-to-upgrade-agent, modelId: auto, input: {
+  "originalPrompt": "Upgrade the Java runtime to the latest LTS version in auto-execution mode for this project.",
+  "projectPath": "/home/alex/Desktop/git/cardgame"
+}}).
+2026-10-03T09:48:37.361Z [INFO] [Tool.invoke] do invoke.
+2026-10-03T09:48:37.361Z [INFO] [RedirectToUpgradeAgentTool] Redirecting to custom agent "modernize-java-upgrade" with prompt: Upgrade the Java runtime to the latest LTS version in auto-execution mode for this project.
+2026-10-03T09:48:37.508Z [INFO] [RedirectToUpgradeAgentTool] Redirected to custom agent "modernize-java-upgrade". User MUST switch to the new agent to continue.
+2026-10-03T09:48:37.508Z [INFO] [Tool.invoke]({result: {
+  "message": "The upgrade request has been redirected to the \"modernize-java-upgrade\" agent in a new chat session. You MUST! stop processing in this session.",
+  "result": {
+    "redirected": true,
+    "agentName": "modernize-java-upgrade",
+    "prompt": "Upgrade the Java runtime to the latest LTS version in auto-execution mode for this project."
+  }
+}}).
+2026-10-03T09:48:37.508Z [INFO] ----------------------invoked appmod-redirect-to-upgrade-agent----------------------
