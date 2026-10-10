@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Deck {
 
+    private int id = 0;
+
     private List<Card> cards;
     public Deck() {
         // Initialize the deck with all cards
@@ -14,12 +16,16 @@ public class Deck {
                 for (Rank rank : Rank.values()) {
                     // Skip the jokers for now
                     if (rank != Rank.SMALL_JOKER && rank != Rank.BIG_JOKER) {
-                        cards.add(new Card(rank, suit));
+                        cards.add(new Card(rank, suit, id));
+                        id++;
                     }
                 }
             }
-            cards.add(new Card(Rank.SMALL_JOKER, null));
-            cards.add(new Card(Rank.BIG_JOKER, null));
+            
+            cards.add(new Card(Rank.SMALL_JOKER, null, id));
+            id++;
+            cards.add(new Card(Rank.BIG_JOKER, null, id));
+            id++;
         }
     }
 
