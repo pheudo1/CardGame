@@ -16,7 +16,7 @@ public class ComparerTests {
         List<Card> cards = new ArrayList<>();
 
         for (Rank rank : ranks) {
-            cards.add(new Card(rank, Suit.CLUBS));
+            cards.add(new Card(rank, Suit.CLUBS, 0));
         }
 
         return cards;
