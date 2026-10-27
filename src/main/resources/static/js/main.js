@@ -1,11 +1,11 @@
 //start
-import { loadHand } from "./api.js";
+import { loadHand, playCards } from "./api.js";
 import { renderHand, getSelectedCardIds } from "./ui.js";
 
 function handlePlay() {
     const cardIds = getSelectedCardIds();
 
-    console.log(cardIds);
+    playCards(cardIds);
 }   
 
 function main() {

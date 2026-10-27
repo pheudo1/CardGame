@@ -3,6 +3,8 @@ package com.bao.api;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bao.model.*;
@@ -20,6 +22,12 @@ public class HandController {
     @GetMapping("/api/hand")
     public List<Card> getHand() {
         return gameService.getHand();
+    }
+    
+    @PostMapping("/api/play")
+    public void playCards(@RequestBody PlayRequest request) {
+        System.out.println("Controller got: " + request.getCardIds());
+        gameService.playCards(request.getCardIds());
     }
 
 }
