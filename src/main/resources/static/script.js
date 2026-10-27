@@ -1,5 +1,38 @@
 let hand = [];
 
+function formatRank(rank) {
+    const ranks = {
+        THREE: "3",
+        FOUR: "4",
+        FIVE: "5",
+        SIX: "6",
+        SEVEN: "7",
+        EIGHT: "8",
+        NINE: "9",
+        TEN: "10",
+        JACK: "J",
+        QUEEN: "Q",
+        KING: "K",
+        ACE: "A",
+        TWO: "2",
+        SMALL_JOKER: "SJ",
+        BIG_JOKER: "BJ"
+    };
+
+    return ranks[rank];
+}
+
+function formatSuit(suit) {
+    const suits = {
+        SPADES: "♠",
+        HEARTS: "♥",
+        DIAMONDS: "♦",
+        CLUBS: "♣"
+    };
+
+    return suits[suit] ?? "";
+}
+
 function loadHand() {
     fetch("/api/hand")
     .then(response => response.json())
@@ -25,7 +58,7 @@ function renderHand() {
 function createCardElement(card) {
     const cardElement = document.createElement("div");
 
-    cardElement.textContent = card.rank + card.suit;
+    cardElement.textContent = formatRank(card.rank) + formatSuit(card.suit);
     cardElement.classList.add("card");
     cardElement.dataset.cardId = card.id;
     
