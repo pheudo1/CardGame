@@ -1,4 +1,5 @@
-let hand = [];
+
+
 
 function formatRank(rank) {
     const ranks = {
@@ -33,17 +34,22 @@ function formatSuit(suit) {
     return suits[suit] ?? "";
 }
 
-function loadHand() {
-    fetch("/api/hand")
-    .then(response => response.json())
-    .then(data => {
-        hand = data;
-        console.log(hand);
-        renderHand();
-    });
+function toggleCard(event) {
+    event.currentTarget.classList.toggle("selected");
+}
+//gives each card a div container and his properties
+function createCardElement(card) {
+    const cardElement = document.createElement("div");
+
+    cardElement.textContent = formatRank(card.rank) + formatSuit(card.suit);
+    cardElement.classList.add("card");
+    cardElement.dataset.cardId = card.id;
+    cardElement.addEventListener("click", toggleCard);
+
+    return cardElement;
 }
 
-function renderHand() {
+export function renderHand(hand) {
     const handElement = document.getElementById("hand");
     handElement.innerHTML = "";
 
@@ -53,35 +59,15 @@ function renderHand() {
         handElement.appendChild(cardElement);
     }
 }
- 
-//gives each card a div container and his properties
-function createCardElement(card) {
-    const cardElement = document.createElement("div");
 
-    cardElement.textContent = formatRank(card.rank) + formatSuit(card.suit);
-    cardElement.classList.add("card");
-    cardElement.dataset.cardId = card.id;
-    
-    cardElement.addEventListener("click", toggleCard);
-
-    return cardElement;
-}
-
-function toggleCard(event) {
-    event.currentTarget.classList.toggle("selected");
-}
-
-loadHand();
-
-//get all card IDs of played cards
-document.getElementById("play-button").addEventListener("click", () => {
+export function getSelectedCardIds() {
     const selected = document.querySelectorAll(".card.selected");
-
     const cardIds = [];
 
     for (const card of selected) {
         cardIds.push(Number(card.dataset.cardId));
     }
+    return cardIds
+}
 
-    console.log(cardIds); //log them
-});
+
