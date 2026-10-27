@@ -1,7 +1,5 @@
 package com.bao.model;
 
-import java.util.List;
-
 public class Player {
     private String name;
     private Hand hand;

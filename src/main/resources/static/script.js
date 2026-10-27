@@ -1,10 +1,26 @@
-const hand = [
-    { id: 1, rank: "3", suit: "♠" },
-    { id: 2, rank: "3", suit: "♥" },
-    { id: 3, rank: "7", suit: "♣" },
-    { id: 4, rank: "Q", suit: "♦" }
-];
+let hand = [];
 
+function loadHand() {
+    fetch("/api/hand")
+    .then(response => response.json())
+    .then(data => {
+        hand = data;
+        console.log(hand);
+        renderHand();
+    });
+}
+
+function renderHand() {
+    const handElement = document.getElementById("hand");
+    handElement.innerHTML = "";
+
+
+    for (const card of hand) {
+        const cardElement = createCardElement(card);
+        handElement.appendChild(cardElement);
+    }
+}
+ 
 //gives each card a div container and his properties
 function createCardElement(card) {
     const cardElement = document.createElement("div");
@@ -22,12 +38,7 @@ function toggleCard(event) {
     event.currentTarget.classList.toggle("selected");
 }
 
-
-
-for (const card of hand) {
-    const cardElement = createCardElement(card);
-    document.getElementById("hand").appendChild(cardElement);
-}
+loadHand();
 
 //get all card IDs of played cards
 document.getElementById("play-button").addEventListener("click", () => {
