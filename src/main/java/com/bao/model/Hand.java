@@ -1,6 +1,7 @@
 package com.bao.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Hand {
@@ -30,6 +31,12 @@ public class Hand {
         // Return the list of cards in the hand
         return cards;
     }
+
+    public void sort() {
+    cards.sort(
+        Comparator.comparingInt(card -> card.getRank().getValue())
+    );
+}
 
 
 

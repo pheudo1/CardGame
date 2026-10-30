@@ -1,26 +1,90 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+#game-table {
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 120px 1fr 220px;
+
+    grid-template-areas:
+        "score top empty"
+        "left center right"
+        "bottom bottom bottom";
+}
+
+#player-top {
+    grid-area: top;
+}
+
+#player-left {
+    grid-area: left;
+}
+
+#player-right {
+    grid-area: right;
+}
+
+#center-play {
+    grid-area: center;
+}
+
+#player-area {
+    grid-area: bottom;
+}
+
+#score {
+    grid-area: score;
+}
+
+.opponent,
+.ally,
+#center-play,
+#player-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#controls {
+    margin-top: 20px;
+}
+
 #hand {
     display: flex;
     justify-content: center;
-    gap: 8px;
+
+    width: 95vw;
+    max-width: 1400px;
+
+    margin: 0 auto;
 }
 
 .card {
-    width: 70px;
-    height: 100px;
+    flex: 1 1 0;
+
+    max-width: 70px;
+    min-width: 30px;
+
+    aspect-ratio: 0.7;
 
     border: 1px solid black;
     border-radius: 8px;
-    
-    background: white;
-    
-    letter-spacing: 0.2rem;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    text-align: center;
+    font-size: clamp(12px, 1.5vw, 24px);
+
     cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
 }
 
 .card.selected {

@@ -8,17 +8,51 @@
 
 <body>
 
-    <div id="table">
-        <div id="current-play"></div>
-    </div>
+    <div id="game-table">
 
-    <div id="hand"></div>
+        <div id="player-top" class="ally">
+            <div class="player-name">Player 3</div>
+            <div class="card-count">27 cards</div>
+        </div>
 
-    <div id="controls">
-        <button id="play-button">Play</button>
-        <button id="pass-button">Pass</button>
+        <div id="player-left" class="opponent">
+            <div class="player-name">Player 2</div>
+            <div class="card-count">27 cards</div>
+        </div>
+
+        <div id="center-play">
+            <div id="combination-type">
+                No cards played
+            </div>
+
+            <div id="played-cards">
+                <!-- played cards later -->
+            </div>
+        </div>
+
+        <div id="player-right" class="opponent">
+            <div class="player-name">Player 4</div>
+            <div class="card-count">27 cards</div>
+        </div>
+
+        <div id="score">
+            <!-- score later -->
+        </div>
+
+        <div id="player-area">
+
+            <div id="hand"></div>
+
+            <div id="controls">
+                <button id="play-button">Play</button>
+                <button id="pass-button">Pass</button>
+            </div>
+
+        </div>
+
     </div>
 
     <script type="module" src="/js/main.js"></script>
+
 </body>
 </html>

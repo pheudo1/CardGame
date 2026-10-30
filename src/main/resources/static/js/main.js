@@ -4,7 +4,6 @@ import { renderHand, getSelectedCardIds } from "./ui.js";
 
 function handlePlay() {
     const cardIds = getSelectedCardIds();
-
     playCards(cardIds);
 }   
 

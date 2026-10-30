@@ -23,6 +23,7 @@ public class GameService {
         for(int i = 0; i<27 ; i++) {
             hand.addCard(deck.drawCard());
         }
+        hand.sort();
     }
 
     public List<Card> getHand() {
