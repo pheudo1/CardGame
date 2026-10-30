@@ -25,9 +25,10 @@ public class HandController {
     }
     
     @PostMapping("/api/play")
-    public void playCards(@RequestBody PlayRequest request) {
+    public PlayResult playCards(@RequestBody PlayRequest request) {
         System.out.println("Controller got: " + request.getCardIds());
-        gameService.playCards(request.getCardIds());
+        return gameService.playCards(request.getCardIds());
+
     }
 
 }

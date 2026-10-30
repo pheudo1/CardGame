@@ -14,5 +14,6 @@ export function playCards(cardIds) {
         body: JSON.stringify({
             cardIds: cardIds
         })
-    });
+    })
+    .then(response => response.json());
 }

@@ -1,10 +1,25 @@
 //start
 import { loadHand, playCards } from "./api.js";
-import { renderHand, getSelectedCardIds } from "./ui.js";
+import { renderHand, renderPlayedCards, getSelectedCardIds } from "./ui.js";
 
 function handlePlay() {
     const cardIds = getSelectedCardIds();
-    playCards(cardIds);
+
+    playCards(cardIds)
+        .then(result => {
+            console.log(result);
+
+            if (result.valid) {
+                renderPlayedCards(
+                    result.cards,
+                    result.combinationType
+                );
+
+                loadHand().then(hand => {
+                    renderHand(hand);
+                }); 
+            }
+        });
 }   
 
 function main() {

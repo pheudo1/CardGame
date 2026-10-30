@@ -38,13 +38,17 @@ function toggleCard(event) {
     event.currentTarget.classList.toggle("selected");
 }
 //gives each card a div container and his properties
-function createCardElement(card) {
+function createCardElement(card, selectable) {
     const cardElement = document.createElement("div");
 
     cardElement.textContent = formatRank(card.rank) + formatSuit(card.suit);
     cardElement.classList.add("card");
-    cardElement.dataset.cardId = card.id;
-    cardElement.addEventListener("click", toggleCard);
+
+    if(selectable) {
+        cardElement.dataset.cardId = card.id;
+        cardElement.addEventListener("click", toggleCard);
+    }
+    
 
     return cardElement;
 }
@@ -55,8 +59,21 @@ export function renderHand(hand) {
 
 
     for (const card of hand) {
-        const cardElement = createCardElement(card);
+        const cardElement = createCardElement(card, true); //selectable
         handElement.appendChild(cardElement);
+    }
+}
+
+export function renderPlayedCards(cards, combinationType) {
+    const playedCardsElement = document.getElementById("played-cards");
+    const typeElement = document.getElementById("combination-type");
+
+    playedCardsElement.innerHTML = "";
+    typeElement.textContent = combinationType;
+
+    for (const card of cards) {
+        const cardElement = createCardElement(card, false); //not selectable
+        playedCardsElement.appendChild(cardElement);
     }
 }
 

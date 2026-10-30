@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.bao.model.*;
 import com.bao.rules.Combination;
 import com.bao.rules.CombinationEval;
+import com.bao.rules.CombinationType;
 
 @Service
 public class GameService {
@@ -43,11 +44,24 @@ public class GameService {
         return selectedCards;
     }
 
-    public void playCards(List<Integer> cardIds) { 
+    public PlayResult playCards(List<Integer> cardIds) { 
         List<Card> selectedCards = getCardsByIds(cardIds);
+
         System.out.println(selectedCards);
         Combination combination = CombinationEval.evaluate(selectedCards);
 
         System.out.println(combination.getType());
+        
+        if (combination.getType() == CombinationType.INVALID) {
+            return new PlayResult(false, "INVALID", List.of());
+        }
+
+        //here: compare against table combination
+
+        for (Card card : selectedCards) {
+            hand.removeCard(card);
+        }
+
+        return new PlayResult(true, combination.getType().name(), selectedCards);
     }
 }   
