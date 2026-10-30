@@ -51,6 +51,13 @@ body {
     align-items: center;
 }
 
+#played-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+}
+
 #controls {
     margin-top: 20px;
 }
