@@ -10,18 +10,16 @@ import com.bao.model.Card;
 import com.bao.model.Rank;
 
 public class CombinationEval {
-    //make constructor here if i want different rules for different games
-    //e.g. wildcard joker
-
-
+    // make constructor here if i want different rules for different games
+    // e.g. wildcard joker
 
     // Method to evaluate the combination of cards
-    // Sorts before checking for combinations, and checks for different combinations based on the frequency of ranks and whether they are consecutive
+    // Sorts before checking for combinations, and checks for different combinations
+    // based on the frequency of ranks and whether they are consecutive
 
     public static Combination evaluate(List<Card> cards) {
         // Starts by sorting the cards and then checking for different combinations
         Map<Rank, Integer> frequencyMap = generateFrequencyMap(cards);
-        
 
         //
         int cardCount = cards.size();
@@ -30,8 +28,9 @@ public class CombinationEval {
         List<Rank> ranks = new ArrayList<>(frequencyMap.keySet());
         boolean isConsecutive = isConsecutive(ranks);
 
-        // Check for different combinations based on the frequency map and consecutive status
-        
+        // Check for different combinations based on the frequency map and consecutive
+        // status
+
         // Section for SINGLES
         // Check for SINGLE
         if (totalRanks == 1 && cardCount == 1) {
@@ -48,34 +47,51 @@ public class CombinationEval {
             return new CombinationSimple(CombinationType.THREE_OF_A_KIND, ranks.get(0), cards);
         }
 
+        // Check for FULL_HOUSE
+        if (cardCount == 5 && frequencyMap.size() == 2 && frequencyMap.values().contains(2)
+                && frequencyMap.values().contains(3)) {
+            Rank tripleRank = null;
+            for (Map.Entry<Rank, Integer> entry : frequencyMap.entrySet()) {
+                if (entry.getValue() == 3) {
+                    tripleRank = entry.getKey();
+                    break;
+                }
+            }
+            return new Combination(CombinationType.FULL_HOUSE, tripleRank, cards);
+        }
         // Check for STRAIGHT
         if (isConsecutive && cardCount >= 5 && cardCount == totalRanks) {
             return new CombinationStraight(CombinationType.STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount);
         }
 
-        //Section for DOUBLES
+        // Section for DOUBLES
         // Check for DOUBLED_STRAIGHT
         if (isConsecutive && cardCount >= 6 && cardCount % 2 == 0 && sameFrequency(frequencyMap, 2)) {
-            return new CombinationStraight(CombinationType.DOUBLED_STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount / 2);
+            return new CombinationStraight(CombinationType.DOUBLED_STRAIGHT, ranks.get(ranks.size() - 1), cards,
+                    cardCount / 2);
         }
 
-        //Section for TRIPLES
+        // Section for TRIPLES
         // Check for TRIPLED_STRAIGHT
         if (isConsecutive && cardCount >= 9 && cardCount % 3 == 0 && sameFrequency(frequencyMap, 3)) {
-            return new CombinationStraight(CombinationType.TRIPLED_STRAIGHT, ranks.get(ranks.size() - 1), cards, cardCount / 3);
+            return new CombinationStraight(CombinationType.TRIPLED_STRAIGHT, ranks.get(ranks.size() - 1), cards,
+                    cardCount / 3);
         }
 
-        //Section for BOMBS
+        // Section for BOMBS
         // Check for BOMB
         if (totalRanks == 1 && cardCount >= 4) {
             return new CombinationBombs(CombinationType.BOMB, ranks.get(0), cards, 1, cardCount);
         }
-        
+
         // Check for STRAIGHT BOMB
-        if (isConsecutive && totalRanks >= 2 && sameFrequency(frequencyMap, cardCount / totalRanks) && cardCount / totalRanks >= 4) {
-            int bombPotency = cardCount / totalRanks; // Calculate the potency of the bomb based on the number of cards and ranks
+        if (isConsecutive && totalRanks >= 2 && sameFrequency(frequencyMap, cardCount / totalRanks)
+                && cardCount / totalRanks >= 4) {
+            int bombPotency = cardCount / totalRanks; // Calculate the potency of the bomb based on the number of cards
+                                                      // and ranks
             int consecutiveLength = totalRanks; // The length of the consecutive ranks
-            return new CombinationBombs(CombinationType.STRAIGHT_BOMB, ranks.get(ranks.size() - 1), cards, consecutiveLength, bombPotency);
+            return new CombinationBombs(CombinationType.STRAIGHT_BOMB, ranks.get(ranks.size() - 1), cards,
+                    consecutiveLength, bombPotency);
         }
 
         // If no valid combination is found, return INVALID
@@ -117,8 +133,5 @@ public class CombinationEval {
         }
         return true;
     }
-
-    
-
 
 }

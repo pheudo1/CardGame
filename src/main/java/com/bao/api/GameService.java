@@ -20,7 +20,7 @@ public class GameService {
         deck.shuffleDeck();
         hand = new Hand();
 
-        for(int i = 0; i<10 ; i++) {
+        for(int i = 0; i<27 ; i++) {
             hand.addCard(deck.drawCard());
         }
     }
@@ -42,7 +42,7 @@ public class GameService {
         return selectedCards;
     }
 
-    public void playCards(List<Integer> cardIds) {
+    public void playCards(List<Integer> cardIds) { 
         List<Card> selectedCards = getCardsByIds(cardIds);
         System.out.println(selectedCards);
         Combination combination = CombinationEval.evaluate(selectedCards);
